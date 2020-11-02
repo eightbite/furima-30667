@@ -1,6 +1,6 @@
 class Form
   include ActiveModel::Model
-  attr_accessor :postal_code, :area_id, :city, :address, :building, :phone_number, :user_id, :item_id
+  attr_accessor :postal_code, :area_id, :city, :address, :building, :phone_number, :user_id, :item_id, :token
 
   # ここにバリデーションの処理を書く
   with_options presence: true do
@@ -10,6 +10,7 @@ class Form
     validates :address
     validates :building
     validates :phone_number, format: {with: /\A^(0{1}\d{9,10})\z/}
+    validates :token
   end
 
   def save
