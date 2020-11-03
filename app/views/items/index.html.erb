@@ -127,10 +127,11 @@
     <ul class='item-lists'>
 
       <li class='list'>
+      <% @item.each do |item| %>
         <%= link_to "" do %>
         <div class='item-img-content'>
           <%= image_tag "", class: "item-img" %>
-          <% if @item.purchase.present? %>
+          <% if item.purchase.present? %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
@@ -149,6 +150,7 @@
           </div>
         </div>
         <% end %>
+      <% end %>
       </li>
 
       <%# 商品がない場合のダミー %>
