@@ -1,4 +1,6 @@
 class PurchasesController < ApplicationController
+
+  before_action :move_to_index
   def index
     @item = Item.find(params[:item_id])
     @form = Form.new
@@ -29,6 +31,13 @@ class PurchasesController < ApplicationController
       card: purchase_params[:token],    # カードトークン
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
+  end
+
+  def move_to_index
+    @item = Item.find(params[:item_id])
+    unless user_signed_in? && current_user.id == @item.user_id && @item.purchase.blank?
+      redirect_to root_path
+    end
   end
 
 end
