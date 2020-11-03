@@ -1,5 +1,6 @@
 class PurchasesController < ApplicationController
 
+  before_action :authenticate_user!
   before_action :move_to_index
   def index
     @item = Item.find(params[:item_id])
