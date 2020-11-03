@@ -36,7 +36,7 @@ class PurchasesController < ApplicationController
 
   def move_to_index
     @item = Item.find(params[:item_id])
-    unless user_signed_in? && @item.purchase.blank?
+    if user_signed_in? && @item.purchase.present?
       redirect_to root_path
     end
   end
